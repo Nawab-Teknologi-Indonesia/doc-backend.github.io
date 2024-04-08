@@ -5165,20 +5165,24 @@
             "Announcement": {
                 "required": [],
                 "properties": {
-                    "created_at": {
-                        "description": "",
-                        "type": "string",
-                        "format": "date-time",
-                        "readOnly": true,
-                        "nullable": true
+                    "success": {
+                        "type": "boolean"
                     },
-                    "updated_at": {
-                        "description": "",
-                        "type": "string",
-                        "format": "date-time",
-                        "readOnly": true,
-                        "nullable": true
-                    }
+                    "result": [
+                        {
+                          "id": 1,
+                          "title": "Marco Hill Jr.",
+                          "short_desc": "Nulla aut earum eligendi alias placeat. ",
+                          "long_desc": "Dignissimos odit tempora iusto maiores expedita dolore.",
+                          "created_at": "2024-02-27T07:20:34.000000Z",
+                          "updated_at": "2024-02-27T07:20:34.000000Z"
+                        }
+                      ],
+                    "meta": {
+                        "code": 200,
+                        "status": "success",
+                        "message": "Fetch success"
+                      }
                 },
                 "type": "object"
             },
