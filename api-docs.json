@@ -9,7 +9,7 @@
         "/api/announcements": {
             "get": {
                 "tags": [
-                    "Announcement"
+                    "Admin - Announcement"
                 ],
                 "summary": "getAnnouncementList",
                 "description": "Get all Announcements",
@@ -43,7 +43,7 @@
             },
             "post": {
                 "tags": [
-                    "Announcement"
+                    "Admin - Announcement"
                 ],
                 "summary": "createAnnouncement",
                 "description": "Create Announcement",
@@ -86,7 +86,7 @@
         "/api/announcements/{id}": {
             "get": {
                 "tags": [
-                    "Announcement"
+                    "Admin - Announcement"
                 ],
                 "summary": "getAnnouncementItem",
                 "description": "Get Announcement",
@@ -128,7 +128,7 @@
             },
             "put": {
                 "tags": [
-                    "Announcement"
+                    "Admin - Announcement"
                 ],
                 "summary": "updateAnnouncement",
                 "description": "Update Announcement",
@@ -180,7 +180,7 @@
             },
             "delete": {
                 "tags": [
-                    "Announcement"
+                    "Admin - Announcement"
                 ],
                 "summary": "deleteAnnouncement",
                 "description": "Delete Announcement",
@@ -224,7 +224,7 @@
         "/api/attendances": {
             "get": {
                 "tags": [
-                    "Attendance"
+                    "Admin - Attendance"
                 ],
                 "summary": "getAttendanceList",
                 "description": "Get all Attendances",
@@ -255,24 +255,27 @@
                         }
                     }
                 }
-            },
-            "post": {
+            }
+        },
+        "/api/attendances/{id}/user": {
+            "get": {
                 "tags": [
-                    "Attendance"
+                    "Admin - Attendance"
                 ],
-                "summary": "createAttendance",
-                "description": "Create Attendance",
-                "operationId": "0a5bf00633a995792d5b98f047fd355a",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Attendance"
-                            }
+                "summary": "findByUserId",
+                "description": "Get Attendances by user id",
+                "operationId": "0252227e13c3c9773413af0540ca571e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of User",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
                         }
                     }
-                },
+                ],
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -284,7 +287,10 @@
                                             "type": "boolean"
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/Attendance"
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
                                         },
                                         "message": {
                                             "type": "string"
@@ -301,7 +307,7 @@
         "/api/attendances/{id}": {
             "get": {
                 "tags": [
-                    "Attendance"
+                    "Admin - Attendance"
                 ],
                 "summary": "getAttendanceItem",
                 "description": "Get Attendance",
@@ -343,7 +349,7 @@
             },
             "delete": {
                 "tags": [
-                    "Attendance"
+                    "Admin - Attendance"
                 ],
                 "summary": "deleteAttendance",
                 "description": "Delete Attendance",
@@ -384,31 +390,20 @@
                 }
             }
         },
-        "/attendances/{id}": {
-            "put": {
+        "/api/admin/login": {
+            "post": {
                 "tags": [
-                    "Attendance"
+                    "Admin - User"
                 ],
-                "summary": "updateAttendance",
-                "description": "Update Attendance",
-                "operationId": "bd264d4d4343041d20b3c5a7993c8136",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "description": "id of Attendance",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
+                "summary": "login",
+                "description": "Login to get token",
+                "operationId": "ea2d96ba7e01f0cb963ba4c56d73b08b",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Attendance"
+                                "$ref": "#/components/schemas/User"
                             }
                         }
                     }
@@ -424,7 +419,40 @@
                                             "type": "boolean"
                                         },
                                         "data": {
-                                            "$ref": "#/components/schemas/Attendance"
+                                            "$ref": "#/components/schemas/User"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Admin - User"
+                ],
+                "summary": "logout",
+                "description": "Logout User",
+                "operationId": "b244ee3d05d3f6a167e0bf9e2a322e07",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
                                         },
                                         "message": {
                                             "type": "string"
@@ -441,11 +469,11 @@
         "/api/user": {
             "get": {
                 "tags": [
-                    "User"
+                    "Admin - User"
                 ],
-                "summary": "getUser",
-                "description": "Get User",
-                "operationId": "55f4395301b2e6575e00a50bbe6a6644",
+                "summary": "getUserList",
+                "description": "Get All User",
+                "operationId": "9ffe1734b396aec1c10c26fed2e75cc3",
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -474,10 +502,154 @@
                 }
             }
         },
+        "/api/user/current": {
+            "get": {
+                "tags": [
+                    "Admin - User"
+                ],
+                "summary": "getCurrentUser",
+                "description": "Get Current User",
+                "operationId": "74419acbdd8e78a38aaea0e10985ba10",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dashboard/daily/sum": {
+            "get": {
+                "tags": [
+                    "Admin - Dashboard"
+                ],
+                "summary": "getDailyStatisticSum",
+                "description": "Get Daily Statistic Sum Attendance",
+                "operationId": "64516656d3f81524e8959f9cf27b5a08",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dashboard/statistic/sum": {
+            "get": {
+                "tags": [
+                    "Admin - Dashboard"
+                ],
+                "summary": "getStatisticCount",
+                "description": "Get Statistic Count Attendance",
+                "operationId": "94f5ebb510db78bd30e090577db85b26",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/dashboard/statistic/donut": {
+            "get": {
+                "tags": [
+                    "Admin - Dashboard"
+                ],
+                "summary": "getStatisticDonut",
+                "description": "Get Statistic Donut Attendance",
+                "operationId": "eb9a5a8e5c5dba3fe77df72559c1d6f4",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/divisions": {
             "get": {
                 "tags": [
-                    "Division"
+                    "Admin - Division"
                 ],
                 "summary": "getDivisionList",
                 "description": "Get all Divisions",
@@ -511,7 +683,7 @@
             },
             "post": {
                 "tags": [
-                    "Division"
+                    "Admin - Division"
                 ],
                 "summary": "createDivision",
                 "description": "Create Division",
@@ -554,7 +726,7 @@
         "/api/divisions/{id}": {
             "get": {
                 "tags": [
-                    "Division"
+                    "Admin - Division"
                 ],
                 "summary": "getDivisionItem",
                 "description": "Get Division",
@@ -596,7 +768,7 @@
             },
             "put": {
                 "tags": [
-                    "Division"
+                    "Admin - Division"
                 ],
                 "summary": "updateDivision",
                 "description": "Update Division",
@@ -648,7 +820,7 @@
             },
             "delete": {
                 "tags": [
-                    "Division"
+                    "Admin - Division"
                 ],
                 "summary": "deleteDivision",
                 "description": "Delete Division",
@@ -692,7 +864,7 @@
         "/api/employees": {
             "get": {
                 "tags": [
-                    "Employee"
+                    "Admin - Employee"
                 ],
                 "summary": "getEmployeeList",
                 "description": "Get all Employees",
@@ -726,7 +898,7 @@
             },
             "post": {
                 "tags": [
-                    "Employee"
+                    "Admin - Employee"
                 ],
                 "summary": "createEmployee",
                 "description": "Create Employee",
@@ -769,7 +941,7 @@
         "/api/employees/{id}": {
             "get": {
                 "tags": [
-                    "Employee"
+                    "Admin - Employee"
                 ],
                 "summary": "getEmployeeItem",
                 "description": "Get Employee",
@@ -811,7 +983,7 @@
             },
             "put": {
                 "tags": [
-                    "Employee"
+                    "Admin - Employee"
                 ],
                 "summary": "updateEmployee",
                 "description": "Update Employee",
@@ -863,7 +1035,7 @@
             },
             "delete": {
                 "tags": [
-                    "Employee"
+                    "Admin - Employee"
                 ],
                 "summary": "deleteEmployee",
                 "description": "Delete Employee",
@@ -904,14 +1076,61 @@
                 }
             }
         },
-        "/api/leave-applications": {
+        "/api/attendances/export/download": {
             "get": {
                 "tags": [
-                    "LeaveApplication"
+                    "Admin - Export"
+                ],
+                "summary": "getExportDownload",
+                "description": "Get download exel Attendance",
+                "operationId": "9effbe8195b176688a59eea07805f79d",
+                "parameters": [
+                    {
+                        "name": "month",
+                        "in": "path",
+                        "description": "month of year (ex: 2024-03)",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/leaves": {
+            "get": {
+                "tags": [
+                    "Admin - LeaveApplication"
                 ],
                 "summary": "getLeaveApplicationList",
                 "description": "Get all LeaveApplications",
-                "operationId": "916ff758298623f910d9753bf0c33f82",
+                "operationId": "da09f7752d3bb61debdc2320780b5083",
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -938,57 +1157,16 @@
                         }
                     }
                 }
-            },
-            "post": {
-                "tags": [
-                    "LeaveApplication"
-                ],
-                "summary": "createLeaveApplication",
-                "description": "Create LeaveApplication",
-                "operationId": "8c7dd7f7a78112629545bfd13aa0aaf9",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/LeaveApplication"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful operation",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "success": {
-                                            "type": "boolean"
-                                        },
-                                        "data": {
-                                            "$ref": "#/components/schemas/LeaveApplication"
-                                        },
-                                        "message": {
-                                            "type": "string"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                }
             }
         },
-        "/api/leave-applications/{id}": {
+        "/api/leaves/{id}": {
             "get": {
                 "tags": [
-                    "LeaveApplication"
+                    "Admin - LeaveApplication"
                 ],
                 "summary": "getLeaveApplicationItem",
                 "description": "Get LeaveApplication",
-                "operationId": "99ea57b8717bc40e7fee906ee83eb0a8",
+                "operationId": "5cbf6e960eb7e17464c22ed950944c84",
                 "parameters": [
                     {
                         "name": "id",
@@ -1026,11 +1204,11 @@
             },
             "put": {
                 "tags": [
-                    "LeaveApplication"
+                    "Admin - LeaveApplication"
                 ],
                 "summary": "updateLeaveApplication",
                 "description": "Update LeaveApplication",
-                "operationId": "53765fe89d882f901e4c4060d0ebbe5f",
+                "operationId": "fbc10837df8dfe02e7f41d37600c57b2",
                 "parameters": [
                     {
                         "name": "id",
@@ -1078,11 +1256,11 @@
             },
             "delete": {
                 "tags": [
-                    "LeaveApplication"
+                    "Admin - LeaveApplication"
                 ],
                 "summary": "deleteLeaveApplication",
                 "description": "Delete LeaveApplication",
-                "operationId": "9b87d7b5c42a8b8030e666f9b669ecc8",
+                "operationId": "5f395d04751bdfc5c8adb200e5927b0a",
                 "parameters": [
                     {
                         "name": "id",
@@ -1119,14 +1297,190 @@
                 }
             }
         },
-        "/locations": {
+        "/loans": {
             "get": {
                 "tags": [
-                    "Location"
+                    "Admin - Loan"
+                ],
+                "summary": "getLoanList",
+                "description": "Get all Loans",
+                "operationId": "92b65473ad85ee96fe18fef50b6fd3fa",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Loan"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/loans/{id}": {
+            "get": {
+                "tags": [
+                    "Admin - Loan"
+                ],
+                "summary": "getLoanItem",
+                "description": "Get Loan",
+                "operationId": "6d2c439e8d5155b88059017497b975bd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Loan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Loan"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin - Loan"
+                ],
+                "summary": "deleteLoan",
+                "description": "Delete Loan",
+                "operationId": "a8a9bb51820511ddc26b0ba38a158dc7",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Loan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/loans/{id}": {
+            "put": {
+                "tags": [
+                    "Admin - Loan"
+                ],
+                "summary": "updateLoan",
+                "description": "Update Loan",
+                "operationId": "a58a788254b6172dd24382d32737026c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Loan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Loan"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Loan"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/locations": {
+            "get": {
+                "tags": [
+                    "Admin - Location"
                 ],
                 "summary": "getLocationList",
                 "description": "Get all Locations",
-                "operationId": "4bdbf5d3d08dfb368d7e3807db5185a3",
+                "operationId": "d831d7bbcf60439dd24f0df40fd4bf32",
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1156,11 +1510,11 @@
             },
             "post": {
                 "tags": [
-                    "Location"
+                    "Admin - Location"
                 ],
                 "summary": "createLocation",
                 "description": "Create Location",
-                "operationId": "499353c092695cc7b7a616ba60c72539",
+                "operationId": "5c44088a018cc54421ac4cf34c5bc2f5",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1196,14 +1550,14 @@
                 }
             }
         },
-        "/locations/{id}": {
+        "/api/locations/{id}": {
             "get": {
                 "tags": [
-                    "Location"
+                    "Admin - Location"
                 ],
                 "summary": "getLocationItem",
                 "description": "Get Location",
-                "operationId": "2103c35d4716c50a7f70ce3bd5416e21",
+                "operationId": "5290e296d3126a59fee1d2f65a58c47e",
                 "parameters": [
                     {
                         "name": "id",
@@ -1241,11 +1595,11 @@
             },
             "put": {
                 "tags": [
-                    "Location"
+                    "Admin - Location"
                 ],
                 "summary": "updateLocation",
                 "description": "Update Location",
-                "operationId": "bead128901bb1c65fab97eaeb11eabbd",
+                "operationId": "860cdbc0f6d99d102c994850f44a64fd",
                 "parameters": [
                     {
                         "name": "id",
@@ -1293,16 +1647,2836 @@
             },
             "delete": {
                 "tags": [
-                    "Location"
+                    "Admin - Location"
                 ],
                 "summary": "deleteLocation",
                 "description": "Delete Location",
-                "operationId": "e7abf997bbf00ffc6a76bf39bcbfbd4c",
+                "operationId": "a0754454a21b15edb009f8842d034dc5",
                 "parameters": [
                     {
                         "name": "id",
                         "in": "path",
                         "description": "id of Location",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logbooks": {
+            "get": {
+                "tags": [
+                    "Admin - Logbook"
+                ],
+                "summary": "getLogbookList",
+                "description": "Get all Logbooks",
+                "operationId": "c8121e8b7eb21aa576e1ab0879b583c8",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Logbook"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/leaves": {
+            "get": {
+                "tags": [
+                    "Manager - LeaveApplication"
+                ],
+                "summary": "getLeaveApplicationByManager",
+                "description": "Get all leave application by manager",
+                "operationId": "95e00fbdcbaea8b3cd00142c0d19e901",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LeaveApplication"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Mobile - LeaveApplication"
+                ],
+                "summary": "createLeaveApplication",
+                "description": "Create LeaveApplication",
+                "operationId": "428682be720404c49e51a028728ec83d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LeaveApplication"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/LeaveApplication"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/leaves/{id}": {
+            "get": {
+                "tags": [
+                    "Mobile - LeaveApplication"
+                ],
+                "summary": "getLeaveApplicationItem",
+                "description": "Get LeaveApplication",
+                "operationId": "bc4f73de535c30bc5ce4523c831a30f1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of LeaveApplication",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/LeaveApplication"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Manager - LeaveApplication"
+                ],
+                "summary": "updateLeaveApplication",
+                "description": "Update LeaveApplication",
+                "operationId": "04cc57348234c71c17fc72780c1b1f84",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of LeaveApplication",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LeaveApplication"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/LeaveApplication"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/loans": {
+            "get": {
+                "tags": [
+                    "Manager - Loan"
+                ],
+                "summary": "getLoanByManager",
+                "description": "Get all Loan by manager",
+                "operationId": "de94c949c0af3a44cf1f1df3ab049b93",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Loan"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Mobile - Loan"
+                ],
+                "summary": "createLoan",
+                "description": "Create Loan",
+                "operationId": "2b3d59587526a500b973618ff236e971",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Loan"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Loan"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/loans/{id}": {
+            "get": {
+                "tags": [
+                    "Mobile - Loan"
+                ],
+                "summary": "getLoanItem",
+                "description": "Get Loan",
+                "operationId": "571e764aac17618cd55452ff9a6c3caf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Loan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Loan"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Manager - Loan"
+                ],
+                "summary": "updateLoan",
+                "description": "Update Loan",
+                "operationId": "13144e6017c1226ab51348b740d2709b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Loan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Loan"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Loan"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/manual-attends": {
+            "get": {
+                "tags": [
+                    "Manager - ManualAttend"
+                ],
+                "summary": "getManualAttendyManager",
+                "description": "Get all ManualAttend by manager",
+                "operationId": "54b564fc55a2558b197cce620d36e03b",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ManualAttend"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Mobile - ManualAttend"
+                ],
+                "summary": "createManualAttend",
+                "description": "Create ManualAttend",
+                "operationId": "0eca8962769f47280c255c691f0ee602",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ManualAttend"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ManualAttend"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/manual-attends/{id}": {
+            "get": {
+                "tags": [
+                    "Mobile - ManualAttend"
+                ],
+                "summary": "getManualAttendItem",
+                "description": "Get ManualAttend",
+                "operationId": "a86c39e3d16ae7c970f52b9737643f56",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ManualAttend",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ManualAttend"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Manager - ManualAttend"
+                ],
+                "summary": "updateManualAttend",
+                "description": "Update ManualAttend",
+                "operationId": "a319cb55d2f6c071446cd772767c6bfe",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ManualAttend",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ManualAttend"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ManualAttend"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/overtimes": {
+            "get": {
+                "tags": [
+                    "Manager - Overtime"
+                ],
+                "summary": "getOvertimeByManager",
+                "description": "Get all Overtime by manager",
+                "operationId": "68a1203312dc146d49ab0d4ebe016f1b",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Overtime"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Mobile - Overtime"
+                ],
+                "summary": "createOvertime",
+                "description": "Create Overtime",
+                "operationId": "0aab04201679c326b1671185eb3b2ffd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Overtime"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Overtime"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/overtimes/{id}": {
+            "get": {
+                "tags": [
+                    "Mobile - Overtime"
+                ],
+                "summary": "getOvertimeItem",
+                "description": "Get Overtime",
+                "operationId": "ed1d5fa1b8081e21a09e9dcf5db7e2ca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Overtime",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Overtime"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Manager - Overtime"
+                ],
+                "summary": "updateOvertime",
+                "description": "Update Overtime",
+                "operationId": "fd88d40bc5a1af7db4683994aeb402d3",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Overtime",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Overtime"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Overtime"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/permissions": {
+            "get": {
+                "tags": [
+                    "Manager - Permission"
+                ],
+                "summary": "getPermissionByManager",
+                "description": "Get all Permission by manager",
+                "operationId": "d8400b15f61c4d68bb67c9dcdad87c38",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Permission"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Mobile - Permission"
+                ],
+                "summary": "createPermission",
+                "description": "Create Permission",
+                "operationId": "93e1e0c3bc310bc55fa87132ca8a15ee",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Permission"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Permission"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/permissions/{id}": {
+            "get": {
+                "tags": [
+                    "Mobile - Permission"
+                ],
+                "summary": "getPermissionItem",
+                "description": "Get Permission",
+                "operationId": "c251285f493ca23ff52888524d5cb374",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Permission",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Permission"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Manager - Permission"
+                ],
+                "summary": "updatePermission",
+                "description": "Update Permission",
+                "operationId": "f327ffa5871fa3121dda98cb26e38424",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Permission",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Permission"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Permission"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manual-attends": {
+            "get": {
+                "tags": [
+                    "Admin - ManualAttend"
+                ],
+                "summary": "getManualAttendList",
+                "description": "Get all ManualAttends",
+                "operationId": "d6d428d9f5eba95c71d2cda0bfc5ab50",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ManualAttend"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Admin - ManualAttend"
+                ],
+                "summary": "createManualAttend",
+                "description": "Create ManualAttend",
+                "operationId": "7562dcd7fd3ef6e28b06c103adf46f9f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ManualAttend"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ManualAttend"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/manual-attends/{id}": {
+            "get": {
+                "tags": [
+                    "Admin - ManualAttend"
+                ],
+                "summary": "getManualAttendItem",
+                "description": "Get ManualAttend",
+                "operationId": "e509d58b1e9908767406f61f5cf32d5b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ManualAttend",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ManualAttend"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin - anualAttend"
+                ],
+                "summary": "updateManualAttend",
+                "description": "Update ManualAttend",
+                "operationId": "63a0d14ffadfa5c48710ec9b0066a9c2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ManualAttend",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ManualAttend"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ManualAttend"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin - ManualAttend"
+                ],
+                "summary": "deleteManualAttend",
+                "description": "Delete ManualAttend",
+                "operationId": "6e159d32b2c0388cd9786308f0508869",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ManualAttend",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/announcements": {
+            "get": {
+                "tags": [
+                    "Mobile - Announcement"
+                ],
+                "summary": "getAnnouncementList",
+                "description": "Get all Announcements",
+                "operationId": "cda93b5b3d4245fe7be26b9124c5bc66",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Announcement"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/announcements/{id}": {
+            "get": {
+                "tags": [
+                    "Mobile - Announcement"
+                ],
+                "summary": "getAnnouncementItem",
+                "description": "Get Announcement",
+                "operationId": "5ed8b4d2f54301ba7efddb4e32efe9a4",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Announcement",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Announcement"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/attendances/current/users": {
+            "get": {
+                "tags": [
+                    "Mobile - Attendance"
+                ],
+                "summary": "getAttendanceByUser",
+                "description": "Get all Attendances by Current User",
+                "operationId": "20aaf6bfee34ac9791a54c565029ebb2",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/attendances": {
+            "post": {
+                "tags": [
+                    "Mobile - Attendance"
+                ],
+                "summary": "createAttendance",
+                "description": "Create Attendance",
+                "operationId": "9463237abb51a2b5e60ddc3ba5746d6f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Attendance"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Attendance"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/attendances/{id}": {
+            "get": {
+                "tags": [
+                    "Mobile - Attendance"
+                ],
+                "summary": "getAttendanceItem",
+                "description": "Get Attendance",
+                "operationId": "8c7f8c284b076e73eae68bee2b56dca2",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Attendance",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Attendance"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Mobile - Attendance"
+                ],
+                "summary": "updateAttendance",
+                "description": "Update Attendance",
+                "operationId": "c808e892a0980a3829f32d67bd6bb03a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Attendance",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Attendance"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Attendance"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/attendances/today/user": {
+            "get": {
+                "tags": [
+                    "Mobile - Attendance"
+                ],
+                "summary": "getAttendanceToday",
+                "description": "Get today Attendances by Current User",
+                "operationId": "eb7cb0eace2697a1ba70d425be1795a2",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/attendances/history/years": {
+            "get": {
+                "tags": [
+                    "Mobile - Attendance"
+                ],
+                "summary": "getAttendanceHistoryInYear",
+                "description": "Get Attendances History in year by Current User",
+                "operationId": "243f00e4fef2eb5a355781dfc799086a",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/attendances/days/year": {
+            "get": {
+                "tags": [
+                    "Mobile - Attendance"
+                ],
+                "summary": "getAttendanceDailyInYear",
+                "description": "Get Attendances Daily in year by Current User",
+                "operationId": "b2d726065d3a247c971572f7b87c7ec3",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/auth/google": {
+            "post": {
+                "tags": [
+                    "Mobile - User"
+                ],
+                "summary": "login",
+                "description": "Login to get token",
+                "operationId": "6938085e2faf9cd4f9045040b6fe7b15",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/logout": {
+            "post": {
+                "tags": [
+                    "Mobile - User"
+                ],
+                "summary": "logout",
+                "description": "Logout User",
+                "operationId": "50c35745275302f375d3953b33f8b9be",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/User"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/current": {
+            "get": {
+                "tags": [
+                    "Mobile - User"
+                ],
+                "summary": "getCurrentUser",
+                "description": "Get Current User",
+                "operationId": "a9e8ec4d1f931d343907661041329ca4",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/attendances/user/count": {
+            "get": {
+                "tags": [
+                    "Mobile - Dashboard"
+                ],
+                "summary": "getCountAttendanceByThisMonth",
+                "description": "Get Attendance count by this month",
+                "operationId": "a6a1f6d1ba12d14ed3e8fa36e66ea5d4",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Attendance"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/divisions/current/user": {
+            "get": {
+                "tags": [
+                    "Mobile - Division"
+                ],
+                "summary": "getDivisionByUser",
+                "description": "Get all Division by Current User",
+                "operationId": "5573872e1e4215108e479f5549fa2572",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Division"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/employees/current/user": {
+            "get": {
+                "tags": [
+                    "Mobile - Employee"
+                ],
+                "summary": "getEmployeeProfile",
+                "description": "Get Employee",
+                "operationId": "e9954c74ffacc8d12859a49c418345a6",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Employee"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/leaves/current/users": {
+            "get": {
+                "tags": [
+                    "Mobile - LeaveApplication"
+                ],
+                "summary": "getLeaveApplicationByUser",
+                "description": "Get all LeaveApplication by Current User",
+                "operationId": "cf5e6c4ed5bc01fe63ac4d9bc0bf303d",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/LeaveApplication"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/leaves/{id}/cancel": {
+            "put": {
+                "tags": [
+                    "Mobile - LeaveApplication"
+                ],
+                "summary": "updateLeaveApplication",
+                "description": "Update LeaveApplication",
+                "operationId": "618cb79fa59e061c470885a0ea1335c8",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of LeaveApplication",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/LeaveApplication"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/LeaveApplication"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/loans/current/users": {
+            "get": {
+                "tags": [
+                    "Mobile - Loan"
+                ],
+                "summary": "getLoanByUser",
+                "description": "Get all Loan by Current User",
+                "operationId": "22e9fd9b4c325442d32467915933dce1",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Loan"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/loans/{id}/cancel": {
+            "put": {
+                "tags": [
+                    "Mobile - Loan"
+                ],
+                "summary": "updateLoan",
+                "description": "Update Loan",
+                "operationId": "3b0a14b1730cc99f0d797843f6423aac",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Loan",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Loan"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Loan"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/logbooks": {
+            "get": {
+                "tags": [
+                    "Mobile - Logbook"
+                ],
+                "summary": "getLogbookList",
+                "description": "Get all Logbooks",
+                "operationId": "9732e22b32e3a59fcbd4dc4c57b6978f",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Logbook"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Mobile - Logbook"
+                ],
+                "summary": "createLogbook",
+                "description": "Create Logbook",
+                "operationId": "9f9b82b90e9d174d3dabece47ea0212b",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Logbook"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Logbook"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/logbooks/{id}": {
+            "get": {
+                "tags": [
+                    "Mobile - Logbook"
+                ],
+                "summary": "getLogbookItem",
+                "description": "Get Logbook",
+                "operationId": "af58b8c995da536c62c1e9989cda6caa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Logbook",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Logbook"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Mobile - Logbook"
+                ],
+                "summary": "updateLogbook",
+                "description": "Update Logbook",
+                "operationId": "a635f51f6333443184a4a19213b74d53",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Logbook",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Logbook"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Logbook"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Mobile - Logbook"
+                ],
+                "summary": "deleteLogbook",
+                "description": "Delete Logbook",
+                "operationId": "127962a90cc231cf06411a8ea4c596ad",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Logbook",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/manual-attends/current/users": {
+            "get": {
+                "tags": [
+                    "Mobile - ManualAttend"
+                ],
+                "summary": "getManualAttendByUser",
+                "description": "Get all ManualAttend by Current User",
+                "operationId": "1bfda07635a9777d733d9b7da55d2660",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/ManualAttend"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/manual-attends/{id}/cancel": {
+            "put": {
+                "tags": [
+                    "Mobile - ManualAttend"
+                ],
+                "summary": "updateManualAttend",
+                "description": "Update ManualAttend",
+                "operationId": "c887585dacb634da19be806bbcaa69ff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of ManualAttend",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ManualAttend"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/ManualAttend"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/overtimes/current/users": {
+            "get": {
+                "tags": [
+                    "Mobile - Overtime"
+                ],
+                "summary": "getOvertimeByUser",
+                "description": "Get all Overtime by Current User",
+                "operationId": "12723cdd91bfde32de83d3659d3bc96a",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Overtime"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/overtimes/{id}/cancel": {
+            "put": {
+                "tags": [
+                    "Mobile - Overtime"
+                ],
+                "summary": "updateOvertime",
+                "description": "Update Overtime",
+                "operationId": "dc5428752542b3bc57ca5921b848a959",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Overtime",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Overtime"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Overtime"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/permissions/current/users": {
+            "get": {
+                "tags": [
+                    "Mobile - Permission"
+                ],
+                "summary": "getOPermissionByUser",
+                "description": "Get all Permission by Current User",
+                "operationId": "3cb9314c327a9566a2bde6004a36d951",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Permission"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/permissions/{id}/cancel": {
+            "put": {
+                "tags": [
+                    "Mobile - Permission"
+                ],
+                "summary": "updatePermission",
+                "description": "Update Permission",
+                "operationId": "c50a76cbe09ae021ac2943b0ea17e6fb",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Permission",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Permission"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Permission"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/positions/current/user": {
+            "get": {
+                "tags": [
+                    "Mobile - Position"
+                ],
+                "summary": "getPositionByUser",
+                "description": "Get all Position by Current User",
+                "operationId": "dc827be304bb7dd46fdcf804aaa81168",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Position"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/shifts/current/user": {
+            "get": {
+                "tags": [
+                    "Mobile - Shift"
+                ],
+                "summary": "getShiftByUser",
+                "description": "Get all Shift by Current User",
+                "operationId": "abcb7306081ad9649b694384595cbdeb",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Shift"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/time-works/current/active": {
+            "get": {
+                "tags": [
+                    "Mobile - TimeWork"
+                ],
+                "summary": "getTimeWorkByUser",
+                "description": "Get all TimeWork by Current User",
+                "operationId": "bcff524919c199671009880371c48ebe",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/TimeWork"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/overtimes": {
+            "get": {
+                "tags": [
+                    "Admin - Overtime"
+                ],
+                "summary": "getOvertimeList",
+                "description": "Get all Overtimes",
+                "operationId": "7de61271747dc3fa4cd6437fabd60f75",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Overtime"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api//overtimes/{id}": {
+            "get": {
+                "tags": [
+                    "Admin - Overtime"
+                ],
+                "summary": "getOvertimeItem",
+                "description": "Get Overtime",
+                "operationId": "b2a09e4d0ca0a80fddc747d2aaee4f86",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Overtime",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Overtime"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin - Overtime"
+                ],
+                "summary": "updateOvertime",
+                "description": "Update Overtime",
+                "operationId": "249945c497ec34786b370d1ce1f97593",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Overtime",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Overtime"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Overtime"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin - Overtime"
+                ],
+                "summary": "deleteOvertime",
+                "description": "Delete Overtime",
+                "operationId": "c0b28b6d1cbc608e07ce0c9993a99e88",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Overtime",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "string"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/permissions": {
+            "get": {
+                "tags": [
+                    "Admin - Permission"
+                ],
+                "summary": "getPermissionList",
+                "description": "Get all Permissions",
+                "operationId": "b908c6b29e41bd23c2c62d4d06a69dd9",
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Permission"
+                                            }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/permissions/{id}": {
+            "get": {
+                "tags": [
+                    "Admin - Permission"
+                ],
+                "summary": "getPermissionItem",
+                "description": "Get Permission",
+                "operationId": "8a72d1c97c9678499de7f78967677aa0",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Permission",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Permission"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Admin - Permission"
+                ],
+                "summary": "updatePermission",
+                "description": "Update Permission",
+                "operationId": "442c376361b36b456023749336fd5eff",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Permission",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Permission"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "success": {
+                                            "type": "boolean"
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Permission"
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Admin - Permission"
+                ],
+                "summary": "deletePermission",
+                "description": "Delete Permission",
+                "operationId": "81ae488fc2172f2fdfddb798df6bb66d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id of Permission",
                         "required": true,
                         "schema": {
                             "type": "integer"
@@ -1337,7 +4511,7 @@
         "/api/positions": {
             "get": {
                 "tags": [
-                    "Position"
+                    "Admin - Position"
                 ],
                 "summary": "getPositionList",
                 "description": "Get all Positions",
@@ -1371,7 +4545,7 @@
             },
             "post": {
                 "tags": [
-                    "Position"
+                    "Admin - Position"
                 ],
                 "summary": "createPosition",
                 "description": "Create Position",
@@ -1414,7 +4588,7 @@
         "/api/positions/{id}": {
             "get": {
                 "tags": [
-                    "Position"
+                    "Admin - Position"
                 ],
                 "summary": "getPositionItem",
                 "description": "Get Position",
@@ -1456,7 +4630,7 @@
             },
             "put": {
                 "tags": [
-                    "Position"
+                    "Admin - Position"
                 ],
                 "summary": "updatePosition",
                 "description": "Update Position",
@@ -1508,7 +4682,7 @@
             },
             "delete": {
                 "tags": [
-                    "Position"
+                    "Admin - Position"
                 ],
                 "summary": "deletePosition",
                 "description": "Delete Position",
@@ -1549,14 +4723,14 @@
                 }
             }
         },
-        "/shifts": {
+        "/api/shifts": {
             "get": {
                 "tags": [
-                    "Shift"
+                    "Admin - Shift"
                 ],
                 "summary": "getShiftList",
                 "description": "Get all Shifts",
-                "operationId": "3b55a2b6be04a2593a938a96d740eb93",
+                "operationId": "f6071490e29b47226b54c25d3cf139c4",
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1586,11 +4760,11 @@
             },
             "post": {
                 "tags": [
-                    "Shift"
+                    "Admin - Shift"
                 ],
                 "summary": "createShift",
                 "description": "Create Shift",
-                "operationId": "0476b0602f4c057bceece707d9115d16",
+                "operationId": "94853df28957fc4e3378fe99440b2568",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1626,14 +4800,14 @@
                 }
             }
         },
-        "/shifts/{id}": {
+        "/api/shifts/{id}": {
             "get": {
                 "tags": [
-                    "Shift"
+                    "Admin - Shift"
                 ],
                 "summary": "getShiftItem",
                 "description": "Get Shift",
-                "operationId": "e7046a14778a72f3ab1312fe6d9d2c24",
+                "operationId": "4f3bcdca7847f9c5f5cebc11195aaed3",
                 "parameters": [
                     {
                         "name": "id",
@@ -1671,11 +4845,11 @@
             },
             "put": {
                 "tags": [
-                    "Shift"
+                    "Admin - Shift"
                 ],
                 "summary": "updateShift",
                 "description": "Update Shift",
-                "operationId": "2c89ae3ebb07146967c569cad90c637d",
+                "operationId": "d136a1989e7d464767d5e1f2a8e405d7",
                 "parameters": [
                     {
                         "name": "id",
@@ -1723,11 +4897,11 @@
             },
             "delete": {
                 "tags": [
-                    "Shift"
+                    "Admin - Shift"
                 ],
                 "summary": "deleteShift",
                 "description": "Delete Shift",
-                "operationId": "70cbe48810641a8781c4d2f01e79bdac",
+                "operationId": "844528e3462e256a609413cad37ee8e2",
                 "parameters": [
                     {
                         "name": "id",
@@ -1764,14 +4938,14 @@
                 }
             }
         },
-        "/time-works": {
+        "/api/time-works": {
             "get": {
                 "tags": [
-                    "TimeWork"
+                    "Admin - TimeWork"
                 ],
                 "summary": "getTimeWorkList",
                 "description": "Get all TimeWorks",
-                "operationId": "9775b34d68e999e43cf981ce9053bcb3",
+                "operationId": "1c5421f69915e9c2cf45cbe290557fb7",
                 "responses": {
                     "200": {
                         "description": "successful operation",
@@ -1801,11 +4975,11 @@
             },
             "post": {
                 "tags": [
-                    "TimeWork"
+                    "Admin - TimeWork"
                 ],
                 "summary": "createTimeWork",
                 "description": "Create TimeWork",
-                "operationId": "4aaf278ae9fd99d8c854e3f407142e37",
+                "operationId": "66931f27107f49861b0a98d4c2af5225",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -1841,14 +5015,14 @@
                 }
             }
         },
-        "/time-works/{id}": {
+        "/api/time-works/{id}": {
             "get": {
                 "tags": [
-                    "TimeWork"
+                    "Admin - TimeWork"
                 ],
                 "summary": "getTimeWorkItem",
                 "description": "Get TimeWork",
-                "operationId": "e0d8b4a1b973a6f7ac3b3393b788c462",
+                "operationId": "6f833fd05ec11a14392b4d85dbe92405",
                 "parameters": [
                     {
                         "name": "id",
@@ -1886,11 +5060,11 @@
             },
             "put": {
                 "tags": [
-                    "TimeWork"
+                    "Admin - TimeWork"
                 ],
                 "summary": "updateTimeWork",
                 "description": "Update TimeWork",
-                "operationId": "33c70fd9a19da4bcb88a185440750ed5",
+                "operationId": "704e853a399026f8302b14219e6cb3cc",
                 "parameters": [
                     {
                         "name": "id",
@@ -1938,11 +5112,11 @@
             },
             "delete": {
                 "tags": [
-                    "TimeWork"
+                    "Admin - TimeWork"
                 ],
                 "summary": "deleteTimeWork",
                 "description": "Delete TimeWork",
-                "operationId": "e5284a3643d7bbc281b572ad4b6c28fc",
+                "operationId": "16d91bc8202d5c3a441645a16cb6216c",
                 "parameters": [
                     {
                         "name": "id",
@@ -2082,7 +5256,107 @@
                 },
                 "type": "object"
             },
+            "Loan": {
+                "required": [],
+                "properties": {
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
             "Location": {
+                "required": [],
+                "properties": {
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Logbook": {
+                "required": [],
+                "properties": {
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "ManualAttend": {
+                "required": [],
+                "properties": {
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Overtime": {
+                "required": [],
+                "properties": {
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "Permission": {
                 "required": [],
                 "properties": {
                     "created_at": {
