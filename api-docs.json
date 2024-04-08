@@ -24,21 +24,15 @@
                                         "success": {
                                             "type": "boolean"
                                         },
-                                        "result": [
-                                            {
-                                              "id": 1,
-                                              "title": "Marco Hill Jr.",
-                                              "short_desc": "Nulla aut earum eligendi alias placeat. ",
-                                              "long_desc": "Dignissimos odit tempora iusto maiores expedita dolore.",
-                                              "created_at": "2024-02-27T07:20:34.000000Z",
-                                              "updated_at": "2024-02-27T07:20:34.000000Z"
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/Announcement"
                                             }
-                                          ],
-                                        "meta": {
-                                            "code": 200,
-                                            "status": "success",
-                                            "message": "Fetch success"
-                                          }
+                                        },
+                                        "message": {
+                                            "type": "string"
+                                        }
                                     },
                                     "type": "object"
                                 }
@@ -5165,24 +5159,28 @@
             "Announcement": {
                 "required": [],
                 "properties": {
-                    "success": {
-                        "type": "boolean"
+                    "id":{
+                        "type":"integer",
+                        "example":1
                     },
-                    "result": [
-                        {
-                          "id": 1,
-                          "title": "Marco Hill Jr.",
-                          "short_desc": "Nulla aut earum eligendi alias placeat. ",
-                          "long_desc": "Dignissimos odit tempora iusto maiores expedita dolore.",
-                          "created_at": "2024-02-27T07:20:34.000000Z",
-                          "updated_at": "2024-02-27T07:20:34.000000Z"
-                        }
-                      ],
-                    "meta": {
-                        "code": 200,
-                        "status": "success",
-                        "message": "Fetch success"
-                      }
+                    "title":{
+                        "type":"string",
+                        "example":"Lorem ipsum"
+                    },
+                    "created_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    },
+                    "updated_at": {
+                        "description": "",
+                        "type": "string",
+                        "format": "date-time",
+                        "readOnly": true,
+                        "nullable": true
+                    }
                 },
                 "type": "object"
             },
