@@ -14,7 +14,7 @@
 	"paths": {
 	  "/announcements?page={page}&perPage={perPage}": {
 		"get": {
-		  "summary": "get",
+		  "summary": "announcement - get",
 		  "description": "Get all announcements",
 		  "parameters": [
 			{
@@ -76,7 +76,7 @@
 	  },
 	  "/announcements/{announcement_id}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "announcement - show",
 		  "description": "Get detail announcement",
 		  "parameters": [
 			{
@@ -117,7 +117,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "announcement - update",
 		  "description": "",
 		  "parameters": [
 			{
@@ -172,7 +172,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "announcement - delete",
 		  "description": "Delete item by id",
 		  "parameters": [
 			{
@@ -217,7 +217,7 @@
 	  },
 	  "/announcements": {
 		"post": {
-		  "summary": "create",
+		  "summary": "announcement - create",
 		  "description": "",
 		  "parameters": [],
 		  "requestBody": {
@@ -267,7 +267,7 @@
 	  },
 	  "/shifts": {
 		"get": {
-		  "summary": "get",
+		  "summary": "shift - get",
 		  "description": "Get all shift",
 		  "parameters": [
 			{
@@ -309,7 +309,7 @@
 		  }
 		},
 		"post": {
-		  "summary": "create",
+		  "summary": "shift - create",
 		  "description": "Create shift",
 		  "parameters": [],
 		  "requestBody": {
@@ -355,7 +355,7 @@
 	  },
 	  "/shifts/{shift_id}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "shift - show",
 		  "description": "Get detail shift by id",
 		  "parameters": [
 			{
@@ -395,7 +395,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "shift - update",
 		  "description": "Update shift by id",
 		  "parameters": [
 			{
@@ -450,7 +450,7 @@
 	  },
 	  "{{BASE_URL}}/shifts/{shift_id}": {
 		"delete": {
-		  "summary": "delete",
+		  "summary": "shift - delete",
 		  "description": "Delete shift by id",
 		  "parameters": [
 			{
@@ -478,7 +478,7 @@
 	  },
 	  "/divisions": {
 		"get": {
-		  "summary": "get",
+		  "summary": "division - get",
 		  "description": "Get all divisions",
 		  "parameters": [
 			{
@@ -521,7 +521,7 @@
 		  }
 		},
 		"post": {
-		  "summary": "create",
+		  "summary": "division - create",
 		  "description": "Create division",
 		  "parameters": [],
 		  "requestBody": {
@@ -569,7 +569,7 @@
 	  },
 	  "/divisions/{division_id}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "division - show",
 		  "description": "Get detail division by id",
 		  "parameters": [
 			{
@@ -610,7 +610,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "division - update",
 		  "description": "Update division by id",
 		  "parameters": [
 			{
@@ -667,7 +667,7 @@
 	  },
 	  "{{BASE_URL}}/divisions/{division_id}": {
 		"delete": {
-		  "summary": "delete",
+		  "summary": "division - delete",
 		  "description": "Delete division",
 		  "parameters": [
 			{
@@ -695,7 +695,7 @@
 	  },
 	  "/positions": {
 		"get": {
-		  "summary": "get",
+		  "summary": "position - get",
 		  "description": "Get all positions",
 		  "parameters": [
 			{
@@ -738,7 +738,7 @@
 	  },
 	  "/positions/{position_id}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "position - show",
 		  "description": "Get detail by id",
 		  "parameters": [
 			{
@@ -777,7 +777,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "position - update",
 		  "description": "Update position by id",
 		  "parameters": [
 			{
@@ -830,7 +830,7 @@
 	  },
 	  "{{BASE_URL}}/positions": {
 		"post": {
-		  "summary": "create",
+		  "summary": "position - create",
 		  "description": "Create division",
 		  "parameters": [],
 		  "requestBody": {
@@ -874,7 +874,7 @@
 	  },
 	  "{{BASE_URL}}/positions/{position_id}": {
 		"delete": {
-		  "summary": "delete",
+		  "summary": "position - delete",
 		  "description": "Delete by id",
 		  "parameters": [
 			{
@@ -902,7 +902,7 @@
 	  },
 	  "/time-works": {
 		"get": {
-		  "summary": "get",
+		  "summary": "timework - get",
 		  "description": "Get all time work",
 		  "parameters": [
 			{
@@ -993,7 +993,7 @@
 		  }
 		},
 		"post": {
-		  "summary": "create",
+		  "summary": "timework - create",
 		  "description": "Create time work",
 		  "parameters": [],
 		  "requestBody": {
@@ -1084,7 +1084,7 @@
 	  },
 	  "/time-works/{timeWorkId)": {
 		"get": {
-		  "summary": "show",
+		  "summary": "timework - show",
 		  "description": "Get detail time work by id",
 		  "parameters": [
 			{
@@ -1147,7 +1147,7 @@
 	  },
 	  "/time-works/{timeWorkId}": {
 		"put": {
-		  "summary": "update",
+		  "summary": "timework - update",
 		  "description": "Upadate time work by id",
 		  "parameters": [
 			{
@@ -1213,7 +1213,7 @@
 	  },
 	  "{{BASE_URL}}/time-works/{timeWorkId}": {
 		"delete": {
-		  "summary": "delete",
+		  "summary": "timework - delete",
 		  "description": "Delete time work by id",
 		  "parameters": [
 			{
@@ -1241,7 +1241,7 @@
 	  },
 	  "/locations": {
 		"get": {
-		  "summary": "get",
+		  "summary": "location - get",
 		  "description": "Get all locations",
 		  "parameters": [
 			{
@@ -1306,7 +1306,7 @@
 		  }
 		},
 		"post": {
-		  "summary": "create",
+		  "summary": "location - create",
 		  "description": "Create location",
 		  "parameters": [],
 		  "requestBody": {
@@ -1368,7 +1368,7 @@
 	  },
 	  "/locations/{location_id}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "location - show",
 		  "description": "Get detail location by id",
 		  "parameters": [
 			{
@@ -1411,7 +1411,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "location - update",
 		  "description": "Update location by id",
 		  "parameters": [
 			{
@@ -1470,7 +1470,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "location - delete",
 		  "description": "Delete location by id",
 		  "parameters": [
 			{
@@ -1498,7 +1498,7 @@
 	  },
 	  "/dashboard/mapkey": {
 		"get": {
-		  "summary": "mapkey",
+		  "summary": "location - mapkey",
 		  "description": "Get mapkey from server",
 		  "parameters": [
 			{
@@ -1534,7 +1534,7 @@
 	  },
 	  "/permissions?page=2&perPage=2": {
 		"get": {
-		  "summary": "get",
+		  "summary": "permission - get",
 		  "description": "Get all permissions",
 		  "parameters": [
 			{
@@ -1610,7 +1610,7 @@
 	  },
 	  "/permissions/{permissionId}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "permission - show",
 		  "description": "Get detail permission by id",
 		  "parameters": [
 			{
@@ -1655,7 +1655,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "permission - update",
 		  "description": "Update location by id",
 		  "parameters": [
 			{
@@ -1712,7 +1712,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "permission - delete",
 		  "description": "Delete location by id",
 		  "parameters": [
 			{
@@ -1740,7 +1740,7 @@
 	  },
 	  "/logbooks": {
 		"get": {
-		  "summary": "get",
+		  "summary": "logbooks - get",
 		  "description": "Get all logbooks",
 		  "parameters": [
 			{
@@ -1834,7 +1834,7 @@
 	  },
 	  "/logbooks/{logbookId}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "logbooks - show",
 		  "description": "Get detail logbook by id",
 		  "parameters": [
 			{
@@ -1876,7 +1876,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "logbooks - delete",
 		  "description": "Delete logbook by id",
 		  "parameters": [
 			{
@@ -1904,7 +1904,7 @@
 	  },
 	  "/loans?page=1&perPage=2": {
 		"get": {
-		  "summary": "get",
+		  "summary": "loan - get",
 		  "description": "Get all loans",
 		  "parameters": [
 			{
@@ -1979,7 +1979,7 @@
 	  },
 	  "/loans/{loanId}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "loan - show",
 		  "description": "Get detail loan by id",
 		  "parameters": [
 			{
@@ -2023,7 +2023,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "loan - update",
 		  "description": "Update loan by id",
 		  "parameters": [
 			{
@@ -2079,7 +2079,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "loan - delete",
 		  "description": "Delete loan by id",
 		  "parameters": [
 			{
@@ -2107,7 +2107,7 @@
 	  },
 	  "/users/role?page=1&search=r": {
 		"get": {
-		  "summary": "get",
+		  "summary": "role - get",
 		  "description": "Get all user with role",
 		  "parameters": [
 			{
@@ -2194,7 +2194,7 @@
 	  },
 	  "/users/role/{id}": {
 		"put": {
-		  "summary": "update",
+		  "summary": "role - update",
 		  "description": "Update user role",
 		  "parameters": [
 			{
@@ -2242,7 +2242,7 @@
 	  },
 	  "/employees?page=1&perPage=1": {
 		"get": {
-		  "summary": "get",
+		  "summary": "employe - get",
 		  "description": "Get all employees",
 		  "parameters": [
 			{
@@ -2338,7 +2338,7 @@
 	  },
 	  "/employees/{employee_id}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "employe - show",
 		  "description": "Get detail employee",
 		  "parameters": [
 			{
@@ -2403,7 +2403,7 @@
 	  },
 	  "/employees": {
 		"post": {
-		  "summary": "create",
+		  "summary": "employe - create",
 		  "description": "Create employee",
 		  "parameters": [],
 		  "responses": {
@@ -2469,7 +2469,7 @@
 	  },
 	  "/employees/{employeeId}": {
 		"post": {
-		  "summary": "update",
+		  "summary": "employe - update",
 		  "description": "Update employee by id",
 		  "parameters": [],
 		  "responses": {
@@ -2512,7 +2512,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "employe - delete",
 		  "description": "Delete employee by id",
 		  "parameters": [
 			{
@@ -2540,7 +2540,7 @@
 	  },
 	  "/leaves": {
 		"get": {
-		  "summary": "get",
+		  "summary": "leave - get",
 		  "description": "Get all leaves",
 		  "parameters": [
 			{
@@ -2644,7 +2644,7 @@
 	  },
 	  "/leaves/{leaveId}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "leave - show",
 		  "description": "Get detail leave by id",
 		  "parameters": [
 			{
@@ -2689,7 +2689,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "leave - update",
 		  "description": "Update leave by id",
 		  "parameters": [],
 		  "requestBody": {
@@ -2747,7 +2747,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "leave - delete",
 		  "description": "Delete leave by id",
 		  "parameters": [
 			{
@@ -2775,7 +2775,7 @@
 	  },
 	  "/overtimes": {
 		"get": {
-		  "summary": "get",
+		  "summary": "overtime - get",
 		  "description": "Get all overtimes",
 		  "parameters": [
 			{
@@ -2836,7 +2836,7 @@
 	  },
 	  "/overtimes/{overtimeId}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "overtime - show",
 		  "description": "Get detail overtime by id",
 		  "parameters": [
 			{
@@ -2882,7 +2882,7 @@
 		  }
 		},
 		"put": {
-		  "summary": "update",
+		  "summary": "overtime - update",
 		  "description": "Update status overtime",
 		  "parameters": [],
 		  "requestBody": {
@@ -2941,7 +2941,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "overtime - delete",
 		  "description": "Delete overtime by id",
 		  "parameters": [
 			{
@@ -2969,7 +2969,7 @@
 	  },
 	  "/attendances/user/2/list?page=1&perPage=1": {
 		"get": {
-		  "summary": "getById",
+		  "summary": "attendance - getById",
 		  "description": "Get all attendance by same user id",
 		  "parameters": [
 			{
@@ -3054,7 +3054,7 @@
 	  },
 	  "/attendances?page=1&perPage=1": {
 		"get": {
-		  "summary": "get",
+		  "summary": "attendance - get",
 		  "description": "Get all attendances",
 		  "parameters": [
 			{
@@ -3150,7 +3150,7 @@
 	  },
 	  "/attendances/export/download?month=2024-08": {
 		"get": {
-		  "summary": "export",
+		  "summary": "attendance - export",
 		  "description": "Get all attendance export excel document",
 		  "parameters": [
 			{
@@ -3186,7 +3186,7 @@
 	  },
 	  "/attendances/export/download/pdf?month=2024-04": {
 		"get": {
-		  "summary": "exportPdf",
+		  "summary": "attendance - exportPdf",
 		  "description": "Get attendance and export pdf document",
 		  "parameters": [
 			{
@@ -3222,7 +3222,7 @@
 	  },
 	  "/attendances/{attendanceId}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "attendance - show",
 		  "description": "Get detail attendance by id",
 		  "parameters": [
 			{
@@ -3297,7 +3297,7 @@
 		  }
 		},
 		"delete": {
-		  "summary": "delete",
+		  "summary": "attendance - delete",
 		  "description": "Delete attendance by id",
 		  "parameters": [
 			{
@@ -3325,7 +3325,7 @@
 	  },
 	  "/manual-attends?page=1&perPage=1": {
 		"get": {
-		  "summary": "get",
+		  "summary": "manual-attend - get",
 		  "description": "Get all manual attendance",
 		  "parameters": [
 			{
@@ -3401,7 +3401,7 @@
 	  },
 	  "/manual-attends/{manualId}": {
 		"get": {
-		  "summary": "show",
+		  "summary": "manual-attend - show",
 		  "description": "",
 		  "parameters": [
 			{
@@ -3458,7 +3458,7 @@
 	  },
 	  "/manual-attends/{manualI}": {
 		"put": {
-		  "summary": "update",
+		  "summary": "manual-attend - update",
 		  "description": "",
 		  "parameters": [],
 		  "requestBody": {
@@ -3508,7 +3508,7 @@
 	  },
 	  "/attendances/{manualId}": {
 		"delete": {
-		  "summary": "delete",
+		  "summary": "manual-attend - delete",
 		  "description": "",
 		  "parameters": [
 			{
@@ -3536,7 +3536,7 @@
 	  },
 	  "/dashboard/daily/sum": {
 		"get": {
-		  "summary": "daily",
+		  "summary": "graph - daily",
 		  "description": "",
 		  "parameters": [],
 		  "responses": {
@@ -3591,7 +3591,7 @@
 	  },
 	  "/dashboard/statistic/sum": {
 		"get": {
-		  "summary": "statistic",
+		  "summary": "dashboard - statistic",
 		  "description": "",
 		  "parameters": [],
 		  "responses": {
@@ -3623,7 +3623,7 @@
 	  },
 	  "/dashboard/statistic/donut": {
 		"get": {
-		  "summary": "donut",
+		  "summary": "dashboard - donut",
 		  "description": "",
 		  "parameters": [],
 		  "responses": {
@@ -3655,7 +3655,7 @@
 	  },
 	  "/admin/register": {
 		"post": {
-		  "summary": "register",
+		  "summary": "auth - register",
 		  "description": "",
 		  "parameters": [
 			{
@@ -3711,7 +3711,7 @@
 	  },
 	  "/admin/login": {
 		"post": {
-		  "summary": "login",
+		  "summary": "auth - login",
 		  "description": "",
 		  "parameters": [
 			{
@@ -3770,7 +3770,7 @@
 	  },
 	  "/logout": {
 		"post": {
-		  "summary": "logout",
+		  "summary": "auth - logout",
 		  "description": "",
 		  "parameters": [],
 		  "requestBody": {
@@ -3801,7 +3801,7 @@
 	  },
 	  "/user/current": {
 		"get": {
-		  "summary": "profile",
+		  "summary": "profile - profile",
 		  "description": "",
 		  "parameters": [
 			{
@@ -3843,7 +3843,7 @@
 	  },
 	  "/admin/user/unemployee": {
 		"get": {
-		  "summary": "unemployee",
+		  "summary": "profile - unemployee",
 		  "description": "",
 		  "parameters": [
 			{
@@ -3885,7 +3885,7 @@
 	  },
 	  "/users": {
 		"get": {
-		  "summary": "users",
+		  "summary": "user - users",
 		  "description": "",
 		  "parameters": [
 			{
